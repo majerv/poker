@@ -22,7 +22,10 @@ class HandEvaluatorTest {
     }
 
     private static void verify(TestInput input) {
-        Category category = input.getHand().evaluate().getCategory();
+        HandRank handRank = input.getHand().evaluate();
+        Category category = handRank.getCategory();
+        log.debug("Hand {} -> rank: {}", input.getHand(), handRank);
+
         Assertions.assertEquals(input.getExpectedCategory(), category);
     }
 
