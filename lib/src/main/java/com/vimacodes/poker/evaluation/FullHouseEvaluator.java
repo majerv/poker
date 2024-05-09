@@ -12,7 +12,7 @@ public class FullHouseEvaluator implements HandEvaluator {
     public Optional<HandRank> evaluate(Hand hand) {
         var groupsByRank = hand.getGroupsByRank();
 
-        if (groupsByRank.size() == 2 && groupsByRank.values().contains(3L)) {
+        if (groupsByRank.size() == 2 && groupsByRank.containsValue(3L)) {
             return Optional.of(new HandRank(Category.FULL_HOUSE));
         }
 

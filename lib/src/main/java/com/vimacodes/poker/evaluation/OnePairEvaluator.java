@@ -11,7 +11,7 @@ public class OnePairEvaluator implements HandEvaluator {
     @Override
     public Optional<HandRank> evaluate(Hand hand) {
 
-        if (hand.getGroupsByRank().keySet().size() == 4) {
+        if (hand.getGroupsByRank().size() == 4) {
             return Optional.of(new HandRank(Category.ONE_PAIR));
         }
 

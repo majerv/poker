@@ -11,7 +11,7 @@ public class HighCardEvaluator implements HandEvaluator {
     @Override
     public Optional<HandRank> evaluate(Hand hand) {
 
-        if (hand.getGroupsByRank().keySet().size() == 5) {
+        if (hand.getGroupsByRank().size() == 5) {
             return Optional.of(new HandRank(Category.HIGH_CARD));
         }
 
