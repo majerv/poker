@@ -12,13 +12,13 @@ public enum Rank {
                                         6), FIVE('5', 5), FOUR('4', 4), THREE('3', 3), TWO('2', 2);
 
         char symbol;
-        int rank;
+        int value;
 
     public static Rank valueOfSymbol(char symbol) {
         return Arrays.stream(values())
                 .filter(s -> s.symbol == symbol)
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "There is no suit with symbol: " + symbol));
+                        "There is no rank with symbol: " + symbol));
     }
 }

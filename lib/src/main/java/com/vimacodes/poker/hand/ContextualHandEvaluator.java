@@ -6,24 +6,30 @@ import java.util.stream.Collectors;
 import com.vimacodes.poker.card.Card;
 import com.vimacodes.poker.card.Rank;
 
-public class ConditionalHandEvaluator implements HandEvaluator {
+public class ContextualHandEvaluator implements HandEvaluator {
 
     @Override
     public HandRank evaluate(Hand hand) {
         var cards = hand.getCards();
-        
+
         Map<Rank, Long> rankCounts = cards.stream()
                 .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()));
 
-        boolean sameSuits = cards.stream().map(Card::getSuit).collect(Collectors.toSet()).size() == 1;
+        boolean sameSuits =
+                cards.stream().map(Card::getSuit).collect(Collectors.toSet()).size() == 1;
 
         List<Rank> sortedCards =
                 cards.stream().map(Card::getRank).sorted().collect(Collectors.toList());
-        
+
+System.out.println(sortedCards);
+
         // FIXME handle 2,3,4,5,A
-        boolean straight = Math.abs(sortedCards.getLast().getRank() - sortedCards.getFirst().getRank()) == 4;
-        
+        boolean straight =
+                Math.abs(sortedCards.getLast().getValue() - sortedCards.getFirst().getValue()) == 4;
+
         Category category = Category.HIGH_CARD;
+
+
 
         if (sameSuits && straight) {
             category = Category.STRAIGHT_FLUSH;

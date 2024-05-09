@@ -3,7 +3,6 @@ package com.vimacodes.poker.card;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import com.vimacodes.poker.card.Suit;
 
 class SuitTest {
 
