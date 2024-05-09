@@ -13,9 +13,11 @@ import lombok.Value;
 @Value
 public class Hand {
 
-    private static final HandEvaluator DEFAULT_EVALUATOR = new ContextualHandEvaluator();
+    private static final HandEvaluator DEFAULT_EVALUATOR = new CompositeHandEvaluator();
 
     Collection<Card> cards;
+
+    // TODO factor out to a properties object
     boolean sameSuit;
     boolean straight;
     Map<Rank, Long> groupsByRank;
@@ -47,11 +49,13 @@ public class Hand {
     }
 
     public HandRank evaluate() {
-        return DEFAULT_EVALUATOR.evaluate(this);
+        return evaluate(DEFAULT_EVALUATOR);
     }
 
     public HandRank evaluate(HandEvaluator evaluator) {
-        return evaluator.evaluate(this);
+        return evaluator.evaluate(this)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Could not evaluate the rank of the following hand: " + this.cards));
     }
 
     private static boolean calculateStraightProperty(Collection<Card> cards) {

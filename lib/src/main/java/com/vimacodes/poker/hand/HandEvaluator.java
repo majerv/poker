@@ -1,5 +1,7 @@
 package com.vimacodes.poker.hand;
 
+import java.util.Optional;
+
 public interface HandEvaluator {
-    HandRank evaluate(Hand hand);
+    Optional<HandRank> evaluate(Hand hand);
 }

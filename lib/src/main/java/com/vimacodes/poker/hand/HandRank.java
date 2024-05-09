@@ -5,5 +5,5 @@ import lombok.Value;
 @Value
 public class HandRank {
     Category category;
-    int rank;
+    // int rank;
 }
