@@ -73,10 +73,6 @@ Different implementations can be provided to:
 - alter the rules (e.g. the [ace-to-five low](https://en.wikipedia.org/wiki/Lowball_(poker)#Ace-to-five))
 - optimize the evaluation algorithm
 
-Different implementations can be provided to:
-- alter the rules (e.g. the [ace-to-five low](https://en.wikipedia.org/wiki/Lowball_(poker)#Ace-to-five))
-- optimize the evaluation algorithm
-
 ```java
 class MyHandEvaluator implements HandEvaluator { ... }
 MyHandEvaluator myEvaluator = ...
