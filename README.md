@@ -75,8 +75,8 @@ Different implementations can be provided to:
 
 ```java
 class MyHandEvaluator implements HandEvaluator { ... }
-MyHandEvaluator myEvaluator = ...
 
+MyHandEvaluator myEvaluator = ...
 Hand hand = ...
 
 // then
