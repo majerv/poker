@@ -59,10 +59,10 @@ public class Hand {
     }
 
     public HandRank evaluate() {
-        return evaluate(DEFAULT_EVALUATOR);
+        return evaluateBy(DEFAULT_EVALUATOR);
     }
 
-    public HandRank evaluate(HandEvaluator evaluator) {
+    public HandRank evaluateBy(HandEvaluator evaluator) {
         return evaluator.evaluate(this)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Could not evaluate the rank of the following hand: " + this.cards));
