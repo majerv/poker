@@ -5,9 +5,12 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import com.google.common.base.Preconditions;
 import com.vimacodes.poker.card.Card;
 import com.vimacodes.poker.card.Rank;
+import lombok.NonNull;
 import lombok.Value;
 
 @Value
@@ -22,8 +25,11 @@ public class Hand {
     boolean straight;
     Map<Rank, Long> groupsByRank;
 
-    public Hand(Collection<Card> cards) {
-        this.cards = List.copyOf(cards);
+    public Hand(@NonNull Collection<Card> inputCards) {
+        checkHandSize(inputCards);
+        
+        this.cards = Set.copyOf(inputCards);
+        checkHandSize(cards);
 
         this.sameSuit = 1 == cards.stream()
                 .map(Card::getSuit)
@@ -37,7 +43,11 @@ public class Hand {
 
     }
 
-    public static Hand valueOf(String input) {
+    private static void checkHandSize(Collection<Card> cards) {
+        Preconditions.checkArgument(cards.size() == 5, "Hands are formed out of 5 cards");
+    }
+
+    public static Hand valueOf(@NonNull String input) {
         String[] parts = input.split("\\s+");
 
         List<Card> cards = Arrays.stream(parts)

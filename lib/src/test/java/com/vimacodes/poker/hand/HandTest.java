@@ -63,4 +63,23 @@ class HandTest {
                 Arguments.of("7D KD 2D QD TD", true),
                 Arguments.of("7D KD 2D QD TS", false));
     }
+
+    @ParameterizedTest(name = "[{index}] {arguments}")
+    @MethodSource
+    void mustHaveExactlyFiveDifferentCards(String cards,
+            Class<? extends Throwable> expectedExceptionType) {
+        Assertions.assertThrowsExactly(expectedExceptionType, () -> Hand.valueOf(cards));
+    }
+
+    private static Stream<Arguments> mustHaveExactlyFiveDifferentCards() {
+        return Stream.of(
+                Arguments.of("7H 7H 7C AS TD", IllegalArgumentException.class),
+                Arguments.of("7H 7H 7C AS TD AC", IllegalArgumentException.class),
+                Arguments.of("7H 5S 7C AS TD AC", IllegalArgumentException.class),
+                Arguments.of("7H 5S 7C AC", IllegalArgumentException.class),
+                Arguments.of("AC", IllegalArgumentException.class),
+                Arguments.of("", IllegalArgumentException.class),
+                Arguments.of(null, NullPointerException.class));
+    }
+
 }
