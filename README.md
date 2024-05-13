@@ -83,5 +83,5 @@ Hand hand = ...
 HandRank handRank = hand.evaluateBy(myEvaluator);
 
 // or
-HandRank handRank = myEvaluator.evaluate(hand);
+Optional<HandRank> handRank = myEvaluator.evaluate(hand);
 ```
