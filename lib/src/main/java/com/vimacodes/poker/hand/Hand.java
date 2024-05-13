@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import com.google.common.base.Preconditions;
 import com.vimacodes.poker.card.Card;
 import com.vimacodes.poker.card.Rank;
+import com.vimacodes.poker.evaluation.CompositeHandEvaluator;
+import com.vimacodes.poker.evaluation.HandEvaluator;
 import lombok.NonNull;
 import lombok.Value;
 

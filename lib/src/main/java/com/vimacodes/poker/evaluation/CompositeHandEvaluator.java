@@ -1,16 +1,9 @@
-package com.vimacodes.poker.hand;
+package com.vimacodes.poker.evaluation;
 
 import java.util.List;
 import java.util.Optional;
-import com.vimacodes.poker.evaluation.FlushEvaluator;
-import com.vimacodes.poker.evaluation.FourOfAKindEvaluator;
-import com.vimacodes.poker.evaluation.FullHouseEvaluator;
-import com.vimacodes.poker.evaluation.HighCardEvaluator;
-import com.vimacodes.poker.evaluation.OnePairEvaluator;
-import com.vimacodes.poker.evaluation.StraightEvaluator;
-import com.vimacodes.poker.evaluation.StraightFlushEvaluator;
-import com.vimacodes.poker.evaluation.ThreeOfAKindEvaluator;
-import com.vimacodes.poker.evaluation.TwoPairsEvaluator;
+import com.vimacodes.poker.hand.Hand;
+import com.vimacodes.poker.hand.HandRank;
 
 public class CompositeHandEvaluator implements HandEvaluator {
 
