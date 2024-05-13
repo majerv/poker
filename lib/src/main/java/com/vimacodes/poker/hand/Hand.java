@@ -70,6 +70,10 @@ public class Hand {
                         "Could not evaluate the rank of the following hand: " + this.cards));
     }
 
+    public boolean hasCardWithRank(final Rank rank) {
+        return cards.stream().anyMatch(c -> c.getRank() == rank);
+    }
+
     private static boolean calculateStraightProperty(Collection<Card> cards) {
         List<Card> sortedCards =
                 cards.stream()
@@ -86,17 +90,18 @@ public class Hand {
         var rankLow = sortedCards.getLast().getRank();
 
         boolean straight = (numCards - 1) == rankHigh.getValue() - rankLow.getValue();
-        
+
         if (straight) {
             return true;
         }
-        
+
         // handle 2,3,4,5,A, aka the "wheel"
         if (rankHigh == Rank.ACE) {
             var reducedCards = sortedCards.subList(1, numCards);
             return reducedCards.getFirst().getRank() == Rank.FIVE && isStraight(reducedCards);
         }
-        
+
         return false;
     }
+
 }

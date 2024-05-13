@@ -3,7 +3,7 @@ package com.vimacodes.poker.hand;
 import lombok.AllArgsConstructor;
 
 /**
- * Based on https://en.wikipedia.org/wiki/List_of_poker_hands.
+ * Based on https://en.wikipedia.org/wiki/List_of_poker_hands
  */
 @AllArgsConstructor
 public enum Category {

@@ -5,6 +5,9 @@ AC AS 7C AD AH | Four of a kind
 TC TS 8C TD 8H | Full house
 TD 7D 2D 5D 8D | Flush
 3S 4D 5H 7H 6C | Straight
-AD 3S 4C 2S 5H | Straight
 7S AS KD 7D 7C | Three of a kind
 AS 5C 3H KD 7H | High card
+AD KD QD JD TD | Straight flush (royal flush)
+5H 3H 4H 2H AH | Straight flush (steel wheel)
+AC KH QD JH TS | Straight (Broadway straight)
+AD 3S 4C 2S 5H | Straight (wheel)
