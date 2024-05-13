@@ -39,7 +39,7 @@ Card card = Card.valueOf("7H");
 
 ### Hand
 
-A hand is formed out 5 cards:
+A hand is formed out of 5 cards:
 
 ```java
 Hand hand = new Hand(List.of(
