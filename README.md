@@ -66,7 +66,7 @@ A default evaluator is provided on the `Hand` class, which is based on [these cl
 Hand hand = Hand.valueOf("3H 7H 5H 6H 4H");
 HandRank handRank = hand.evaluate();
 
-System.out.println(handRank.getCategory());     --> prints "Straight flush"
+System.out.println(handRank.getCategory());     --> prints "STRAIGHT_FLUSH"
 ```
 
 Different implementations can be provided to:
