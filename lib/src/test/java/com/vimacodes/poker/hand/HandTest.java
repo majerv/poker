@@ -1,5 +1,8 @@
 package com.vimacodes.poker.hand;
 
+import com.vimacodes.poker.card.Card;
+import com.vimacodes.poker.card.Rank;
+import com.vimacodes.poker.card.Suit;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Assertions;
@@ -7,11 +10,39 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import com.vimacodes.poker.card.Card;
-import com.vimacodes.poker.card.Rank;
-import com.vimacodes.poker.card.Suit;
 
 class HandTest {
+
+    private static Stream<Arguments> checkStraigthProperty() {
+        return Stream.of(
+                Arguments.of("7H 5S 7C AS TD", false),
+                Arguments.of("7H 5S 4C 6S 8D", true),
+                Arguments.of("2S 3S 4S 5S 6S", true),
+                Arguments.of("2S 3S 4S 5S AS", true),
+                Arguments.of("2C 3H 4D 5S AD", true),
+                Arguments.of("2C 3H 6D 5S AD", false),
+                Arguments.of("TC JH QD KS AD", true),
+                Arguments.of("TC JH QD 5S AD", false));
+    }
+
+    private static Stream<Arguments> checkSameSuitProperty() {
+        return Stream.of(
+                Arguments.of("7H 5S 7C AS TD", false),
+                Arguments.of("7S 5S 4S 6S 8S", true),
+                Arguments.of("7D KD 2D QD TD", true),
+                Arguments.of("7D KD 2D QD TS", false));
+    }
+
+    private static Stream<Arguments> mustHaveExactlyFiveDifferentCards() {
+        return Stream.of(
+                Arguments.of("7H 7H 7C AS TD", IllegalArgumentException.class),
+                Arguments.of("7H 7H 7C AS TD AC", IllegalArgumentException.class),
+                Arguments.of("7H 5S 7C AS TD AC", IllegalArgumentException.class),
+                Arguments.of("7H 5S 7C AC", IllegalArgumentException.class),
+                Arguments.of("AC", IllegalArgumentException.class),
+                Arguments.of("", IllegalArgumentException.class),
+                Arguments.of(null, NullPointerException.class));
+    }
 
     @Test
     void valueOfValidCards() {
@@ -38,30 +69,10 @@ class HandTest {
         Assertions.assertEquals(expected, Hand.valueOf(cards).isStraight());
     }
 
-    private static Stream<Arguments> checkStraigthProperty() {
-        return Stream.of(
-                Arguments.of("7H 5S 7C AS TD", false),
-                Arguments.of("7H 5S 4C 6S 8D", true),
-                Arguments.of("2S 3S 4S 5S 6S", true),
-                Arguments.of("2S 3S 4S 5S AS", true),
-                Arguments.of("2C 3H 4D 5S AD", true),
-                Arguments.of("2C 3H 6D 5S AD", false),
-                Arguments.of("TC JH QD KS AD", true),
-                Arguments.of("TC JH QD 5S AD", false));
-    }
-
     @ParameterizedTest(name = "[{index}] {arguments}")
     @MethodSource
     void checkSameSuitProperty(String cards, boolean expected) {
         Assertions.assertEquals(expected, Hand.valueOf(cards).isSameSuit());
-    }
-
-    private static Stream<Arguments> checkSameSuitProperty() {
-        return Stream.of(
-                Arguments.of("7H 5S 7C AS TD", false),
-                Arguments.of("7S 5S 4S 6S 8S", true),
-                Arguments.of("7D KD 2D QD TD", true),
-                Arguments.of("7D KD 2D QD TS", false));
     }
 
     @ParameterizedTest(name = "[{index}] {arguments}")
@@ -69,17 +80,6 @@ class HandTest {
     void mustHaveExactlyFiveDifferentCards(String cards,
             Class<? extends Throwable> expectedExceptionType) {
         Assertions.assertThrowsExactly(expectedExceptionType, () -> Hand.valueOf(cards));
-    }
-
-    private static Stream<Arguments> mustHaveExactlyFiveDifferentCards() {
-        return Stream.of(
-                Arguments.of("7H 7H 7C AS TD", IllegalArgumentException.class),
-                Arguments.of("7H 7H 7C AS TD AC", IllegalArgumentException.class),
-                Arguments.of("7H 5S 7C AS TD AC", IllegalArgumentException.class),
-                Arguments.of("7H 5S 7C AC", IllegalArgumentException.class),
-                Arguments.of("AC", IllegalArgumentException.class),
-                Arguments.of("", IllegalArgumentException.class),
-                Arguments.of(null, NullPointerException.class));
     }
 
 }

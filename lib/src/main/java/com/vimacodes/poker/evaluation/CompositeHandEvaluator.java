@@ -1,9 +1,9 @@
 package com.vimacodes.poker.evaluation;
 
-import java.util.List;
-import java.util.Optional;
 import com.vimacodes.poker.hand.Hand;
 import com.vimacodes.poker.hand.HandRank;
+import java.util.List;
+import java.util.Optional;
 
 public class CompositeHandEvaluator implements HandEvaluator {
 

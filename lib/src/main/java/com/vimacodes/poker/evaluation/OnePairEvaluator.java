@@ -7,14 +7,13 @@ import com.vimacodes.poker.hand.HandRank;
 
 public class OnePairEvaluator implements HandEvaluator {
 
-    @Override
-    public Optional<HandRank> evaluate(Hand hand) {
+  @Override
+  public Optional<HandRank> evaluate(Hand hand) {
 
-        if (hand.getGroupsByRank().size() == 4) {
-            return Optional.of(new HandRank(Category.ONE_PAIR));
-        }
-
-        return Optional.empty();
+    if (hand.getGroupsByRank().size() == 4) {
+      return Optional.of(new HandRank(Category.ONE_PAIR));
     }
 
+    return Optional.empty();
+  }
 }

@@ -6,18 +6,17 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class HandRank {
-    Category category;
-    String specialName;
-    // int rank;
+  Category category;
+  String specialName;
 
-    public HandRank(Category category) {
-        this(category, null);
-    }
+  // int rank;
 
-    public String toPrettyPrint() {
-        var name = (specialName == null) ? "" : " (" + specialName + ")";
-        return category.toPrettyPrint() + name;
-    }
+  public HandRank(Category category) {
+    this(category, null);
+  }
 
-
+  public String toPrettyPrint() {
+    var name = (specialName == null) ? "" : " (" + specialName + ")";
+    return category.toPrettyPrint() + name;
+  }
 }

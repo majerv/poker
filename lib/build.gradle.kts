@@ -19,7 +19,7 @@ dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
-    
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
@@ -30,10 +30,10 @@ dependencies {
 
     // lombok
     compileOnly("org.projectlombok:lombok:1.18.32")
-	annotationProcessor("org.projectlombok:lombok:1.18.32")
-	
-	testCompileOnly("org.projectlombok:lombok:1.18.32")
-	testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+    testCompileOnly("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
 
     // logging
     api("org.slf4j:slf4j-api:2.0.13")

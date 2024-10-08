@@ -1,5 +1,10 @@
 package com.vimacodes.poker.hand;
 
+import com.google.common.base.Preconditions;
+import com.vimacodes.poker.card.Card;
+import com.vimacodes.poker.card.Rank;
+import com.vimacodes.poker.evaluation.CompositeHandEvaluator;
+import com.vimacodes.poker.evaluation.HandEvaluator;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -7,11 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import com.google.common.base.Preconditions;
-import com.vimacodes.poker.card.Card;
-import com.vimacodes.poker.card.Rank;
-import com.vimacodes.poker.evaluation.CompositeHandEvaluator;
-import com.vimacodes.poker.evaluation.HandEvaluator;
 import lombok.NonNull;
 import lombok.Value;
 
@@ -60,20 +60,6 @@ public class Hand {
         return new Hand(cards);
     }
 
-    public HandRank evaluate() {
-        return evaluateBy(DEFAULT_EVALUATOR);
-    }
-
-    public HandRank evaluateBy(HandEvaluator evaluator) {
-        return evaluator.evaluate(this)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "Could not evaluate the rank of the following hand: " + this.cards));
-    }
-
-    public boolean hasCardWithRank(final Rank rank) {
-        return cards.stream().anyMatch(c -> c.getRank() == rank);
-    }
-
     private static boolean calculateStraightProperty(Collection<Card> cards) {
         List<Card> sortedCards =
                 cards.stream()
@@ -102,6 +88,20 @@ public class Hand {
         }
 
         return false;
+    }
+
+    public HandRank evaluate() {
+        return evaluateBy(DEFAULT_EVALUATOR);
+    }
+
+    public HandRank evaluateBy(HandEvaluator evaluator) {
+        return evaluator.evaluate(this)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Could not evaluate the rank of the following hand: " + this.cards));
+    }
+
+    public boolean hasCardWithRank(final Rank rank) {
+        return cards.stream().anyMatch(c -> c.getRank() == rank);
     }
 
 }

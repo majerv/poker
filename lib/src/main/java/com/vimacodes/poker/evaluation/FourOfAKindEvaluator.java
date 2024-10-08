@@ -1,11 +1,11 @@
 package com.vimacodes.poker.evaluation;
 
-import java.util.Map;
-import java.util.Optional;
 import com.vimacodes.poker.card.Rank;
 import com.vimacodes.poker.hand.Category;
 import com.vimacodes.poker.hand.Hand;
 import com.vimacodes.poker.hand.HandRank;
+import java.util.Map;
+import java.util.Optional;
 
 public class FourOfAKindEvaluator implements HandEvaluator {
 
